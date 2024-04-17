@@ -1,0 +1,76 @@
+.main {
+    /* Add styles for the main container */
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+.topic {
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.description {
+    font-weight: 500;
+    font-size: 1.3rem;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.addQues {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.addQues:hover {
+    background-color: #0056b3;
+}
+
+.box {
+    /* Add styles for the box container */
+}
+
+.questionContainer {
+    margin-bottom: 20px;
+    /* Add margin between each question */
+}
+
+.question {
+    margin-bottom: 10px;
+    /* Add margin below each question */
+    font-weight: bold;
+}
+
+.optionsContainer {
+    margin-left: 20px;
+    /* Add margin to indent options */
+}
+
+.option {
+    cursor: pointer;
+    border-radius: 20px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    left: 10px;
+    width: 60%;
+    margin-bottom: 5px;
+    /* Add margin between each option */
+}
+
+.disabledButton {
+    background-color: #007bff;
+    opacity: 0.6;
+    cursor: not-allowed;
+    padding: 8px;
+    border-radius: 6px;
+}

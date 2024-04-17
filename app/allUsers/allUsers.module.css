@@ -1,0 +1,45 @@
+.center {
+    /* height: calc(100vh - 60px); */
+    height: 90vh;
+    display: flex;
+    /* gap: 7px; */
+    flex-direction: column;
+    /* justify-content: center;  */
+    align-items: center;
+    padding-top: 60px;
+}
+
+.heading {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.card {
+    background-color: #e5e5e5;
+    /* Light background color */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Shadow effect */
+    padding: 20px;
+    /* Padding for content */
+    border-radius: 8px;
+    /* Rounded corners */
+    transition: box-shadow 0.3s ease;
+    /* Smooth transition for hover effect */
+}
+
+.card:hover {
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    /* Shadow effect on hover */
+    cursor: pointer;
+}
+
+.box {
+    background-color: red;
+    margin-top: 5px;
+}

@@ -1,0 +1,8 @@
+.center {
+    height: 100vh; /* Set the form height to the viewport height */
+    display: flex;
+    gap: 7px;
+    flex-direction: column;
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+}
