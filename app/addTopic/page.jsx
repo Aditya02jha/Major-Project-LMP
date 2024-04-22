@@ -7,26 +7,27 @@ import styles from './addTopic.module.css'
 export default function AddTopic() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [variety, setVariety] = useState("");
 
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!title || !description) {
-      alert("Title and description are required.");
+  
+    if (!title || !description || !variety) {
+      alert("Title, description, and variety are required.");
       return;
     }
-
+  
     try {
       const res = await fetch("http://localhost:3000/api/topics", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
         },
-        body: JSON.stringify({ title, description }),
+        body: JSON.stringify({ title, description, variety }), // Make sure variety is included here
       });
-
+  
       if (res.ok) {
         router.push("/");
         return;
@@ -37,6 +38,7 @@ export default function AddTopic() {
       console.log(error);
     }
   };
+  
 
   return (
     <form onSubmit={handleSubmit}  
@@ -57,6 +59,14 @@ export default function AddTopic() {
         className="border border-slate-500 px-8 py-2"
         type="text"
         placeholder="Topic Description"
+      />
+
+      <input
+        onChange={(e) => setVariety(e.target.value)}
+        value={variety}
+        className="border border-slate-500 px-8 py-2"
+        type="text"
+        placeholder="Variety"
       />
 
       <button

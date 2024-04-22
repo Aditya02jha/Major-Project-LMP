@@ -56,6 +56,16 @@
     /* Add margin to indent options */
 }
 
+.correctOption{
+    background-color: #2dd72d;
+}
+
+.incorrectOption {
+    /* background-color: #f50d0ddb;  */
+    cursor:not-allowed;
+    background-color: rgb(181, 178, 178);
+}
+
 .option {
     cursor: pointer;
     border-radius: 20px;

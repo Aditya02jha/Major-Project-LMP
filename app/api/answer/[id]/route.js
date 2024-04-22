@@ -77,6 +77,8 @@ export async function POST(request, { params }) {
 
         let { selectedOptionIndex, user } = await request.json();
 
+        // console.log("idd", id)
+
         await connectMongoDB();
         // console.log(selectedOptionIndex)
 

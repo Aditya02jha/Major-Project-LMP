@@ -1,13 +1,43 @@
+// import connectMongoDB from "@/libs/mongodb";
+// import Topic from "@/models/topic";
+// import { NextResponse } from "next/server";
+
+// export async function POST(request) {
+//   const { title, description, variety } = await request.json();
+//   await connectMongoDB();
+//   await Topic.create({ title, description, variety });
+//   return NextResponse.json({ message: "Topic Created" }, { status: 201 });
+// }
+
 import connectMongoDB from "@/libs/mongodb";
 import Topic from "@/models/topic";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
-  const { title, description } = await request.json();
-  await connectMongoDB();
-  await Topic.create({ title, description });
-  return NextResponse.json({ message: "Topic Created" }, { status: 201 });
+  try {
+    // Extract title, description, and variety from request body
+    const { title, description, variety } = await request.json();
+
+    // Log the received data
+    // console.log("Received Data:", { title, description, variety });
+
+    // Connect to MongoDB
+    await connectMongoDB();
+
+    // Create a new topic with the provided data
+    await Topic.create({ title, description, variety });
+
+    // Return success response
+    return NextResponse.json({ message: "Topic Created" }, { status: 201 });
+  } catch (error) {
+    // Log any errors that occur during the process
+    console.error("Error creating topic:", error);
+
+    // Return error response
+    return NextResponse.error("Failed to create topic", { status: 500 });
+  }
 }
+
 
 export async function GET() {
   await connectMongoDB();
