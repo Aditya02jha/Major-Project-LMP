@@ -356,7 +356,7 @@ export default function EditTopicForm({ id, title, description, updateUserPoints
                         </div>
                     ))
                 ) : (
-                    <h1 className={styles.topic}>Add Questions</h1>
+                    <h1 className={styles.topic}>No Questions To Display. Add Questions!!</h1>
                 )}
             </div>
         </div>

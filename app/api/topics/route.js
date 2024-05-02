@@ -16,16 +16,16 @@ import { NextResponse } from "next/server";
 export async function POST(request) {
   try {
     // Extract title, description, and variety from request body
-    const { title, description, variety } = await request.json();
+    const { title, description, variety, read } = await request.json();
 
     // Log the received data
-    // console.log("Received Data:", { title, description, variety });
+    // console.log("Received Data:", { title, description, variety, read });
 
     // Connect to MongoDB
     await connectMongoDB();
 
     // Create a new topic with the provided data
-    await Topic.create({ title, description, variety });
+    await Topic.create({ title, description, variety, read });
 
     // Return success response
     return NextResponse.json({ message: "Topic Created" }, { status: 201 });

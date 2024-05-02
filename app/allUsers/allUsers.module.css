@@ -30,16 +30,21 @@
     border-radius: 8px;
     /* Rounded corners */
     transition: box-shadow 0.3s ease;
+    font-size: 1.2rem
     /* Smooth transition for hover effect */
 }
 
 .card:hover {
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
     /* Shadow effect on hover */
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .box {
     background-color: red;
     margin-top: 5px;
+}
+
+.name{
+    font-weight: bold;
 }

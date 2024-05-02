@@ -22,16 +22,18 @@
     /* Rounded corners */
     transition: box-shadow 0.3s ease;
     /* Smooth transition for hover effect */
-    
+    font-size: 1.3rem;
+    margin-top: 5px;
 }
 
 .card:hover {
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
     /* Shadow effect on hover */
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .heading{
     font-size: 1.5rem;
     font-weight: 600;
+    margin-bottom: 8px;
 }

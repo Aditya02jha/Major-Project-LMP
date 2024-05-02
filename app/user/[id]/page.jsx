@@ -308,12 +308,12 @@ export default function AddUserDetal({ params }) {
         <>
             <div className={`${styles.center}`}>
                 <div className={styles.card}>
-                <h2 className={styles.heading}>User Information</h2>
-                <p><strong>User ID:</strong> {userInfo._id}</p>
-                <p><strong>Name:</strong> {userInfo.name}</p>
-                <p><strong>Email:</strong> {userInfo.email}</p>
-                <p><strong>Badge:</strong> {userInfo.badge}</p>
-                <p><strong>Points:</strong> {userPoints}</p>
+                    <h2 className={styles.heading}>User Information</h2>
+                    <p><strong>User ID:</strong> {userInfo._id}</p>
+                    <p><strong>Name:</strong> {userInfo.name}</p>
+                    <p><strong>Email:</strong> {userInfo.email}</p>
+                    <p><strong>Badge:</strong> {userInfo.badge}</p>
+                    <p><strong>Points:</strong> {userPoints}</p>
                 </div>
             </div>
         </>

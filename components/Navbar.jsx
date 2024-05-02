@@ -110,6 +110,7 @@ export default function Navbar() {
     const [userPoints, setUserPoints] = useState(0);
     const [updateBadge, setUpdateBadge] = useState("");
     const [userInfo, setUserInfo] = useState({});
+    const [isDarkMode, setIsDarkMode] = useState(false);
     const router = useRouter();
 
     useEffect(() => {
@@ -214,7 +215,7 @@ export default function Navbar() {
             fetchUserPointsUI();
             // updateBadge();
         }
-    }, [points]);
+    }, [points, isLoggedIn]);
 
 
     const updateBadgeInUI = (points) => {
@@ -235,31 +236,44 @@ export default function Navbar() {
         router.push("/login");
     };
 
+
+    const toggleDarkMode = () => {
+        setIsDarkMode(!isDarkMode);
+        document.body.classList.toggle(styles.darkMode);
+    };
+
     return (
         <nav className={styles.navbar}>
             <div className={styles.navbarLeft}>
                 <Link href="/" className={styles.navbarBrand}>
-                    APAM
+                    LMP
                 </Link>
-                {isLoggedIn && (
-                    <Link href={`/user/${userId}`} className={styles.navbarName}>
-                        {userName}
-                    </Link>
-                )}
-                <p className={styles.point}>Points: {points}</p>
-                {/* {console.log("info", userInfo)} */}
-                <p className={styles.point}>Badge: {userInfo.badge}</p>
+                {
+                    isLoggedIn && (
+                        <>
+                            <Link href={`/user/${userId}`} className={styles.navbarName}>
+                                {userName}
+                            </Link>
+                            <p className={styles.point}>Points: {points}</p>
+                            {/* {console.log("info", userInfo)} */}
+                            <p className={styles.point}>Badge: {userInfo.badge}</p>
+                        </>
+                    )}
             </div>
             <div className={styles.navbarRight}>
-                {/* <Link href="/addTopic" className={styles.navbarBrand}>
-                    Add Topics
-                </Link> */}
+                <button
+                    onClick={toggleDarkMode}
+                    className={`${styles.modeToggleButton} ${isDarkMode ? styles.lightMode : styles.darkMode}`}
+                >
+                    {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+                </button>
+
                 {userEmail === "ayushjha5467@gmail.com" ? (
                     <Link href="/addTopic" className={styles.addQues}>
                         Add Courses
                     </Link>
                 ) : (
-                    <span className={styles.disabledButton}>Add Topics</span>
+                    <span className={styles.disabledButton}>Add Courses</span>
                 )}
 
                 {userEmail === "ayushjha5467@gmail.com" ? (
@@ -267,7 +281,6 @@ export default function Navbar() {
                 ) : (
                     <span className={`${styles.disabledButton} ${styles.hiddenButton}`}>All Users</span>
                 )}
-
 
                 {isLoggedIn ? (
                     <button onClick={handleLogout} className={styles.navbarButton}>

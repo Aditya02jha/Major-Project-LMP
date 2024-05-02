@@ -8,26 +8,27 @@ export default function AddTopic() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [variety, setVariety] = useState("");
+  const [read, setRead] = useState("");
 
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    if (!title || !description || !variety) {
-      alert("Title, description, and variety are required.");
+
+    if (!title || !description || !variety || !read) {
+      alert("Title, description, read link and variety are required.");
       return;
     }
-  
+
     try {
       const res = await fetch("http://localhost:3000/api/topics", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
         },
-        body: JSON.stringify({ title, description, variety }), // Make sure variety is included here
+        body: JSON.stringify({ title, description, variety, read }), // Make sure variety is included here
       });
-  
+
       if (res.ok) {
         router.push("/");
         return;
@@ -38,43 +39,50 @@ export default function AddTopic() {
       console.log(error);
     }
   };
-  
+
 
   return (
-    <form onSubmit={handleSubmit}  
-    // className="flex flex-col items-center justify-center h-screen gap-3" style={{height: '100vh'}}
-    className={styles.center}
-    >
-      <input
+    <form onSubmit={handleSubmit} className={styles.center}>
+      <h1 className={styles.heading}>Add New Courses</h1>
+    <input
         onChange={(e) => setTitle(e.target.value)}
         value={title}
-        className="border border-slate-500 px-8 py-2"
+        className={`${styles.input} ${styles.border}`}
         type="text"
         placeholder="Topic Title"
-      />
+    />
 
-      <input
+    <input
         onChange={(e) => setDescription(e.target.value)}
         value={description}
-        className="border border-slate-500 px-8 py-2"
+        className={`${styles.input} ${styles.border}`}
         type="text"
         placeholder="Topic Description"
-      />
+    />
 
-      <input
+    <input
         onChange={(e) => setVariety(e.target.value)}
         value={variety}
-        className="border border-slate-500 px-8 py-2"
+        className={`${styles.input} ${styles.border}`}
         type="text"
         placeholder="Variety"
-      />
+    />
 
-      <button
+    <input
+        onChange={(e) => setRead(e.target.value)}
+        value={read}
+        className={`${styles.input} ${styles.border}`}
+        type="text"
+        placeholder="Read More Link"
+    />
+
+    <button
         type="submit"
-        className="bg-green-600 font-bold text-white py-3 px-6 w-fit"
-      >
+        className={`${styles.button} ${styles.bgGreen} ${styles.fontBold} ${styles.textWhite} ${styles.py3} ${styles.px6} ${styles.wFit}`}
+    >
         Add Topic
-      </button>
-    </form>
+    </button>
+</form>
+
   );
 }

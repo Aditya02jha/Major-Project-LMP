@@ -14,7 +14,9 @@
     right: 20px;
     height: 50%; /* Match the height of the main container */
     width: 200px; /* Set the width of the variety list */
-    background-color: #f0f0f0;
+    /* background-color: #cfc7c7; */
+    background-color: #e5e5e5;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
     overflow-y: auto;
     z-index: 100;
@@ -24,9 +26,14 @@
     border-radius: 10px;
 }
 
+.varietyList:hover {
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    /* cursor: pointer; */
+}
+
 .ContentHeading{
     font-weight: bold;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
 }
 
 .filter{
@@ -37,17 +44,19 @@
     cursor: pointer;
     padding: 10px;
     font-size: 1.1rem;
+    color: white;
+    margin-top: 7px;
 }
 /* Styles for the variety list items */
 .varietyItem {
     margin-bottom: 10px;
-    cursor: pointer;
+    /* cursor: pointer; */
     color: #333;
 }
 
 /* Hover effect for variety list items */
 .varietyItem:hover {
-    color: #000;
+    color: #8c7171;
     cursor: pointer;
 }
 
@@ -76,7 +85,7 @@
 
 .card:hover {
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .variety {
@@ -84,3 +93,23 @@
     font-style: italic;
     color: rgb(142, 37, 241);
 }
+
+.info {
+    display: flex;
+    align-items: center; /* Align items vertically in the center */
+  }
+  
+  .info p {
+    margin-right: 5px; /* Adjust the margin between the elements */
+  }
+  
+  .readMoreLink {
+    display: inline-block;
+    margin-left: 5px;
+    color: blue; /* Example color for the link */
+    background-color: rgb(207 200 200);
+    border-radius: 10px;
+    padding: 6px;
+    font-size: 1.02rem;
+  }
+  

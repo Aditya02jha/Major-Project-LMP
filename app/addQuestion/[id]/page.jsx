@@ -163,7 +163,7 @@ export default function AddQuestion({ params }) {
       <select
         value={correctOptionIndex}
         onChange={(e) => setCorrectOptionIndex(Number(e.target.value))}
-        className="border border-slate-500 px-8 py-2 mb-4"
+        className={`${styles.input} ${styles.border}`}
       >
         {/* <option value="" disabled>Select option</option> */}
         {options.map((_, index) => (

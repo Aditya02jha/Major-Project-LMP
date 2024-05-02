@@ -78,3 +78,19 @@
     border-radius: 5px;
     padding: 5px;
 }
+.modeToggleButton {
+    padding: 8px 16px;
+    border: none;
+    color: #ffffff; /* Text color for both modes */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .modeToggleButton.darkMode {
+    background-color: #5283ed; /* Background color for dark mode */
+  }
+  
+  .modeToggleButton.lightMode {
+    background-color: #000000; /* Background color for light mode */
+  }
+  

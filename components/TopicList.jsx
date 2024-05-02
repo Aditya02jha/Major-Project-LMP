@@ -65,6 +65,7 @@ import Link from "next/link";
 import RemoveBtn from "./RemoveBtn";
 import { HiPencilAlt } from "react-icons/hi";
 import styles from "./styles/topicList.module.css";
+import styles2 from "./styles/navBar.module.css";
 import EditTopicForm from "./EditTopicForm";
 
 // Function to fetch topics from the API
@@ -93,6 +94,7 @@ export default function TopicsList() {
   useEffect(() => {
     const fetchTopics = async () => {
       const data = await getTopics();
+      console.log("data", data.topics)
       setTopics(data.topics);
     };
     fetchTopics();
@@ -104,7 +106,7 @@ export default function TopicsList() {
     : topics;
 
   return (
-    <>
+    <div className={styles2.lightMode}>
       {/* Display the list of varieties */}
       <div className={styles.varietyList}>
         <div className={styles.content}>
@@ -137,12 +139,22 @@ export default function TopicsList() {
             <div>
               <h2 className="font-bold text-2xl">{topic.title}</h2>
               <div>{topic.description}</div>
-              <p className={styles.variety}>{topic.variety}</p>
+
+              <div className={styles.info}>
+                <p className={styles.variety}>{topic.variety}</p>
+                {/* <Link href="https://www.w3schools.com/js/">Read More</Link> */}
+                {topic.read && (
+                  <Link href={topic.read} className={styles.readMoreLink}>
+                    Read More
+                  </Link>
+                )}
+              </div>
+              
             </div>
             {/* <RemoveBtn id={topic._id} /> */}
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }
