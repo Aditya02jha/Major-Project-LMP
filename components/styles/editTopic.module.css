@@ -46,6 +46,14 @@
     /* Add margin between each question */
 }
 
+
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 7px;
+  }
+
 .question {
     margin-bottom: 10px;
     /* Add margin below each question */

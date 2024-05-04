@@ -100,6 +100,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import styles from "./styles/navBar.module.css";
+import ThemeSwitch from "./ThemeSwitch";
 
 export default function Navbar() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -261,12 +262,7 @@ export default function Navbar() {
                     )}
             </div>
             <div className={styles.navbarRight}>
-                <button
-                    onClick={toggleDarkMode}
-                    className={`${styles.modeToggleButton} ${isDarkMode ? styles.lightMode : styles.darkMode}`}
-                >
-                    {isDarkMode ? 'Light Mode' : 'Dark Mode'}
-                </button>
+                <ThemeSwitch className={styles.themetogle}></ThemeSwitch>
 
                 {userEmail === "ayushjha5467@gmail.com" ? (
                     <Link href="/addTopic" className={styles.addQues}>

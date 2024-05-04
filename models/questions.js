@@ -7,7 +7,8 @@ const questionSchema = new Schema({
     correctOptionIndex: Number,
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
-    correctedByUser: { type: Boolean, default: false }
+    correctedByUser: { type: Boolean, default: false },
+    level: { type: Number, required: true }
 });
 
 const Question = mongoose.models.Question || mongoose.model("Question", questionSchema);

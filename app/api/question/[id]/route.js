@@ -6,13 +6,13 @@ export async function POST(request, { params }) {
     try {
         const { id } = params;
 
-        let { text, options, correctOptionIndex } = await request.json();
+        let { text, options, correctOptionIndex, level } = await request.json();
 
         // console.log("new ques",text)
         await connectMongoDB();
 
         correctOptionIndex = correctOptionIndex +1;
-        if (!text || !options || !correctOptionIndex) {
+        if (!text || !options || !correctOptionIndex ||!level) {
             return NextResponse.json({ message: "Missing required fields" }, { status: 400 });
         }
 
@@ -21,6 +21,7 @@ export async function POST(request, { params }) {
             text,
             options,
             correctOptionIndex,
+            level
         });
 
         return NextResponse.json({ newQuestion });
@@ -40,6 +41,11 @@ export async function POST(request, { params }) {
 
 export async function GET(request, { params }) {
     const { id } = params;
+    // console.log("req", request);
+    // const urlParams = new URLSearchParams(request.url.split('?')[1]);
+    // const level = urlParams.get('level');
+    // console.log("level", level);
+
     await connectMongoDB();
     try {
         const question = await Question.find({ topic: id });
@@ -53,3 +59,26 @@ export async function GET(request, { params }) {
         return NextResponse.json({ message: "Internal server error" }, { status: 500 });
     }
 }
+
+
+// export async function GET(request, { params }) {
+//     const { id } = params;
+//     const urlParams = new URLSearchParams(request.url.split('?')[1]);
+//     const level = urlParams.get('level');
+//     console.log(request);
+
+//     await connectMongoDB();
+//     try {
+//         // Fetch questions based on the topic ID and level
+//         const questions = await Question.find({ topic: id, level: level });
+        
+//         if (!questions || questions.length === 0) {
+//             return NextResponse.json({ message: "Questions not found for the specified level" }, { status: 404 });
+//         }
+        
+//         return NextResponse.json({ questions }, { status: 200 });
+//     } catch (error) {
+//         console.error("Error fetching questions:", error);
+//         return NextResponse.json({ message: "Internal server error" }, { status: 500 });
+//     }
+// }

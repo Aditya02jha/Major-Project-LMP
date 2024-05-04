@@ -49,5 +49,5 @@ export async function DELETE(request) {
   const id = request.nextUrl.searchParams.get("id");
   await connectMongoDB();
   await Topic.findByIdAndDelete(id);
-  return NextResponse.json({ message: "Topic deleted" }, { status: 200 });
+  return NextResponse.json({ message: "Course deleted" }, { status: 200 });
 }

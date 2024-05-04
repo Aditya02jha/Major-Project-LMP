@@ -9,6 +9,16 @@
     padding-top: 60px;
 }
 
+.lightCard {
+    background-color: #e5e5e5;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.darkCard {
+    background-color: #333;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+}
+
 .heading {
     font-size: 2rem;
     font-weight: bold;
@@ -21,9 +31,6 @@
 }
 
 .card {
-    background-color: #e5e5e5;
-    /* Light background color */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     /* Shadow effect */
     padding: 20px;
     /* Padding for content */

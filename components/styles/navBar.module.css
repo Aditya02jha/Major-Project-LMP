@@ -94,3 +94,6 @@
     background-color: #000000; /* Background color for light mode */
   }
   
+  .themetogle{
+    cursor: pointer;
+  }
