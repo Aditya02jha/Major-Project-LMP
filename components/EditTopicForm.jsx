@@ -256,28 +256,25 @@ export default function EditTopicForm({ id, title, description, updateUserPoints
     // const existingLevels = Array.from(new Set(questions.map((ques) => ques.level)));
 
     // const levelsToDisplay = existingLevels.length > 0 ? existingLevels : [1];
+
+    const scrollToQuestion = (questionIndex) => {
+        const questionContainer = document.querySelectorAll(`.${styles.questionContainer}`)[questionIndex];
+        if (questionContainer) {
+            questionContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    };
     return (
         <ThemeProvider>
             <div
-            //  className={styles.levelContainer}
-            className={`${styles.varietyList} ${resolvedTheme === 'dark' ? styles.darkCard : styles.lightCard}`}
-
-            >
+                //  className={styles.levelContainer}
+                className={`${styles.varietyList} ${resolvedTheme === 'dark' ? styles.darkCard : styles.lightCard}`}>
                 <div className={styles.content}>
                     <h2 className={styles.ContentHeading}>Levels</h2>
                     <ul>
-                        {/* Display all available levels */}
-                        {/* <li onClick={() => setSelectedLevel("")}
-                        className={styles.filter}
-                    // className={`${styles.filter} ${resolvedTheme === 'dark' ? styles.darkCard : styles.lightCard}`}
-                >
-                    All</li> */}
                         {Array.from(new Set(questions.map((question) => question.level))).map(
                             (level) => (
                                 <li key={level} onClick={() => setSelectedLevel(level)}
-                                    // className={styles.filter}
-                                    className={`${styles.filter} ${resolvedTheme === 'dark' ? styles.darkCard : styles.lightCard}`}
-                                >
+                                    className={`${styles.filter} ${resolvedTheme === 'dark' ? styles.darkCard : styles.lightCard}`}>
                                     Level {level}
                                 </li>
                             )
@@ -304,7 +301,6 @@ export default function EditTopicForm({ id, title, description, updateUserPoints
 
                 </div>
                 <div className={styles.box}>
-
                     {filteredLevel.length > 0 ? (
                         filteredLevel.map((ques, key) => (
                             <div key={key} className={styles.questionContainer}>
@@ -344,6 +340,18 @@ export default function EditTopicForm({ id, title, description, updateUserPoints
                     ) : (
                         <h1 className={styles.topic}>No Questions To Display. Add Questions!!</h1>
                     )}
+                </div>
+                <div className={`${styles.right} ${resolvedTheme === 'dark' ? styles.darkCard : styles.lightCard}`}>
+                    <h2 className={styles.ContentHeading}>Questions</h2>
+                    <ul className={styles.quesGrid}>
+                        {filteredLevel.map((ques, key) => (
+                            <li 
+                            className={styles.queLink}
+                            key={key} onClick={() => scrollToQuestion(key)}>
+                                {key + 1}. 
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             </div>
         </ThemeProvider>
