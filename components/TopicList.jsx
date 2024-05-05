@@ -114,22 +114,22 @@ export default function TopicsList() {
     <ThemeProvider>
       {/* Display the list of varieties */}
       <div className={`${styles.varietyList} ${resolvedTheme === 'dark' ? styles.darkCard : styles.lightCard}`}
->
+      >
         <div className={styles.content}>
           <h2 className={styles.ContentHeading}>Varieties</h2>
           <ul>
             {/* Display all available varieties */}
             <li onClick={() => setSelectedVariety("")}
-            //  className={styles.filter}
-            className={`${styles.filter} ${resolvedTheme === 'dark' ? styles.darkCard : styles.lightCard}`}
-             >
+              //  className={styles.filter}
+              className={`${styles.filter} ${resolvedTheme === 'dark' ? styles.darkCard : styles.lightCard}`}
+            >
               All</li>
             {Array.from(new Set(topics.map((topic) => topic.variety))).map(
               (variety) => (
                 <li key={variety} onClick={() => setSelectedVariety(variety)}
-                //  className={styles.filter}
-                className={`${styles.filter} ${resolvedTheme === 'dark' ? styles.darkCard : styles.lightCard}`}
-                 >
+                  //  className={styles.filter}
+                  className={`${styles.filter} ${resolvedTheme === 'dark' ? styles.darkCard : styles.lightCard}`}
+                >
                   {variety}
                 </li>
               )

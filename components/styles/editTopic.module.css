@@ -5,6 +5,54 @@
     flex-direction: column;
 }
 
+.lightCard {
+    background-color: #e5e5e5;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.darkCard {
+    background-color: #333;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+}
+
+.filter{
+    background-color: #007bff;
+    margin: 3px;
+    margin-left: 0;
+    border-radius: 7px;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 1.1rem;
+    color: white;
+    margin-top: 7px;
+}
+
+.ContentHeading{
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+.varietyList {
+    position: absolute;
+    top: 170px;
+    left: 20px;
+    height: 50%; 
+    width: 200px; 
+    /* background-color: #e5e5e5;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+    padding: 20px;
+    overflow-y: auto;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    border-radius: 10px;
+}
+
+.varietyList:hover {
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
 .topic {
     font-weight: bold;
     font-size: 2rem;
@@ -93,3 +141,15 @@
     padding: 8px;
     border-radius: 6px;
 }
+
+.levelContainer {
+    position: fixed;
+    top: 220px; /* Adjust as per your design */
+    left: 20px; /* Adjust as per your design */
+    z-index: 1000; /* Ensure it's above other content */
+    background-color: white; /* Set the background color */
+    padding: 10px; /* Add padding for better readability */
+    border-radius: 8px; /* Add some border-radius for styling */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a shadow for depth */
+}
+

@@ -153,6 +153,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import styles from './styles/editTopic.module.css';
+import { ThemeProvider, useTheme } from 'next-themes';
 import RemoveQues from "./RemoveQues";
 
 export default function EditTopicForm({ id, title, description, updateUserPoints }) {
@@ -166,6 +167,7 @@ export default function EditTopicForm({ id, title, description, updateUserPoints
     const [showOneAnswers, setShowOneAnswers] = useState([]); // State to track whether to show answers or not for individual questions
     const [levels, setLevels] = useState([]);
     const [selectedLevel, setSelectedLevel] = useState(1);
+    const { resolvedTheme } = useTheme();
 
     useEffect(() => {
         const Id = localStorage.getItem('userId');
@@ -242,65 +244,108 @@ export default function EditTopicForm({ id, title, description, updateUserPoints
         setSelectedQuestionIndex(index); // Set the selected question index
     };
 
+    const filteredLevel = selectedLevel
+        ? questions.filter((ques) => ques.level === selectedLevel)
+        : questions;
+
+    console.log(filteredLevel)
+    // const handleLevelChange = (event) => {
+    //     setSelectedLevel(parseInt(event.target.value));
+    // };
+
+    // const existingLevels = Array.from(new Set(questions.map((ques) => ques.level)));
+
+    // const levelsToDisplay = existingLevels.length > 0 ? existingLevels : [1];
     return (
-        <div className={styles.main}>
-            <h1 className={styles.topic}>Course: {title}</h1>
-            <h4 className={styles.description}>{description}</h4>
-            <div className={styles.header}>
-                <h1>All Questions</h1>
-                {console.log("email", userEmail)}
-                {userEmail === "ayushjha5467@gmail.com" ? (
-                    <Link href={`/addQuestion/${id}`} className={styles.addQues}>
-                        Add Question
-                    </Link>
-                ) : (
-                    <span className={styles.disabledButton}>Add Question</span>
-                )}
-                <button className={styles.addQues} onClick={toggleShowAnswers}>
-                    {showAnswers ? 'Hide All Answers' : 'Show All Answers'}
-                </button>
+        <ThemeProvider>
+            <div
+            //  className={styles.levelContainer}
+            className={`${styles.varietyList} ${resolvedTheme === 'dark' ? styles.darkCard : styles.lightCard}`}
+
+            >
+                <div className={styles.content}>
+                    <h2 className={styles.ContentHeading}>Levels</h2>
+                    <ul>
+                        {/* Display all available levels */}
+                        {/* <li onClick={() => setSelectedLevel("")}
+                        className={styles.filter}
+                    // className={`${styles.filter} ${resolvedTheme === 'dark' ? styles.darkCard : styles.lightCard}`}
+                >
+                    All</li> */}
+                        {Array.from(new Set(questions.map((question) => question.level))).map(
+                            (level) => (
+                                <li key={level} onClick={() => setSelectedLevel(level)}
+                                    // className={styles.filter}
+                                    className={`${styles.filter} ${resolvedTheme === 'dark' ? styles.darkCard : styles.lightCard}`}
+                                >
+                                    Level {level}
+                                </li>
+                            )
+                        )}
+                    </ul>
+                </div>
             </div>
-            <div className={styles.box}>
-                {questions.length > 0 ? (
-                    questions.map((ques, key) => (
-                        <div key={key} className={styles.questionContainer}>
-                            <div className={styles.actions}>
-                                <h3 className={styles.question}>
-                                    {key + 1}. {ques.text}
-                                </h3>
-                                {userEmail === "ayushjha5467@gmail.com" && (
-                                    <RemoveQues id={ques._id} />
-                                )}
-                            </div>
-                            <div className={styles.optionsContainer}>
-                                {ques.options.map((val, i) => (
-                                    <>
-                                        <p
-                                            key={i}
-                                            className={`${styles.option} ${correctAnswerIndexes[key] === i + 1 && (showAnswers || showOneAnswers[key]) ? styles.correctOption : ''}`}
-                                            onClick={(e) => {
-                                                handleclick(i, ques._id, e.target);
-                                            }}
-                                        >
-                                            {String.fromCharCode(97 + i)}. {val}
-                                        </p>
-                                    </>
-                                ))}
-                                <button className={styles.addQues} onClick={() => handleShowAnswer(key)}>
-                                    {showOneAnswers[key] ? 'Hide Answer' : 'Show Answer'}
-                                </button>
-                                {/* {selectedQuestionIndex === key && showOneAnswers[key] && (
+            <div className={styles.main}>
+                <h1 className={styles.topic}>Course: {title}</h1>
+                <h4 className={styles.description}>{description}</h4>
+                <div className={styles.header}>
+                    <h1>All Questions</h1>
+                    {console.log("email", userEmail)}
+                    {userEmail === "ayushjha5467@gmail.com" ? (
+                        <Link href={`/addQuestion/${id}`} className={styles.addQues}>
+                            Add Question
+                        </Link>
+                    ) : (
+                        <span className={styles.disabledButton}>Add Question</span>
+                    )}
+                    <button className={styles.addQues} onClick={toggleShowAnswers}>
+                        {showAnswers ? 'Hide All Answers' : 'Show All Answers'}
+                    </button>
+
+                </div>
+                <div className={styles.box}>
+
+                    {filteredLevel.length > 0 ? (
+                        filteredLevel.map((ques, key) => (
+                            <div key={key} className={styles.questionContainer}>
+                                <div className={styles.actions}>
+                                    <h3 className={styles.question}>
+                                        {key + 1}. {ques.text}
+                                    </h3>
+                                    {userEmail === "ayushjha5467@gmail.com" && (
+                                        <RemoveQues id={ques._id} />
+                                    )}
+                                </div>
+                                <div className={styles.optionsContainer}>
+                                    {ques.options.map((val, i) => (
+                                        <>
+                                            <p
+                                                key={i}
+                                                className={`${styles.option} ${correctAnswerIndexes[key] === i + 1 && (showAnswers || showOneAnswers[key]) ? styles.correctOption : ''}`}
+                                                onClick={(e) => {
+                                                    handleclick(i, ques._id, e.target);
+                                                }}
+                                            >
+                                                {String.fromCharCode(97 + i)}. {val}
+                                            </p>
+                                        </>
+                                    ))}
+                                    <button className={styles.addQues} onClick={() => handleShowAnswer(key)}>
+                                        {showOneAnswers[key] ? 'Hide Answer' : 'Show Answer'}
+                                    </button>
+                                    {/* {selectedQuestionIndex === key && showOneAnswers[key] && (
                                     <p className={styles.correctOption}>
                                         Correct Answer: {String.fromCharCode(97 + ques.correctOptionIndex-1)}. {ques.options[ques.correctOptionIndex-1]}
                                     </p>
                                 )} */}
+                                </div>
                             </div>
-                        </div>
-                    ))
-                ) : (
-                    <h1 className={styles.topic}>No Questions To Display. Add Questions!!</h1>
-                )}
+                        ))
+                    ) : (
+                        <h1 className={styles.topic}>No Questions To Display. Add Questions!!</h1>
+                    )}
+                </div>
             </div>
-        </div>
+        </ThemeProvider>
     );
 }
