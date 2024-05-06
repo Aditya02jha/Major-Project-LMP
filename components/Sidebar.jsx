@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { SidebarItem } from "./sidebar-item";
-import { ClerkLoaded, ClerkLoading, UserButton } from "@clerk/nextjs";
+// import { ClerkLoaded, ClerkLoading, UserButton } from "@clerk/nextjs";
 import { Loader } from "lucide-react";
 export const Sidebar = ({ className }) => {
   return (
@@ -27,14 +27,14 @@ export const Sidebar = ({ className }) => {
         <SidebarItem label="quests"  iconSrc="/quests.svg" href="/quests"/>
         <SidebarItem label="shop"  iconSrc="/shop.svg" href="/shop"/>
         </div>
-        <div className="p-4">
+        {/* <div className="p-4">
         <ClerkLoading>
             <Loader className="h-5 w-5 text-muted-foreground animate-spin" />
         </ClerkLoading>
         <ClerkLoaded>
             <UserButton afterSignOutUrl="/"/>
         </ClerkLoaded>
-        </div>
+        </div> */}
       </div>
     </>
   );
