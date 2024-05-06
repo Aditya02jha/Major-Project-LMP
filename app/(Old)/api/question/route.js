@@ -7,3 +7,10 @@ export async function GET() {
     const allQuestion = await Question.find();
     return NextResponse.json({ allQuestion });
 }
+
+export async function DELETE(request) {
+    const id = request.nextUrl.searchParams.get("id");
+    await connectMongoDB();
+    await Question.findByIdAndDelete(id);
+    return NextResponse.json({ message: "Question deleted" }, { status: 200 });
+  }

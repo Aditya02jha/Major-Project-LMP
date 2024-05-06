@@ -181,6 +181,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { ThemeProvider, useTheme } from 'next-themes';
 import styles from '../user.module.css'
 
 export default function AddUserDetal({ params }) {
@@ -190,6 +191,7 @@ export default function AddUserDetal({ params }) {
     const [userInfo, setUserInfo] = useState({});
     const [userPoints, setUserPoints] = useState(0);
     const { id } = params;
+  const { resolvedTheme } = useTheme();
 
     const router = useRouter();
 
@@ -305,9 +307,10 @@ export default function AddUserDetal({ params }) {
     };
 
     return (
-        <>
+        <ThemeProvider>
             <div className={`${styles.center}`}>
-                <div className={styles.card}>
+                <div className={`${styles.card} ${resolvedTheme === 'dark' ? styles.darkCard : styles.lightCard}`}
+>
                     <h2 className={styles.heading}>User Information</h2>
                     <p><strong>User ID:</strong> {userInfo._id}</p>
                     <p><strong>Name:</strong> {userInfo.name}</p>
@@ -316,6 +319,6 @@ export default function AddUserDetal({ params }) {
                     <p><strong>Points:</strong> {userPoints}</p>
                 </div>
             </div>
-        </>
+        </ThemeProvider>
     );
 }

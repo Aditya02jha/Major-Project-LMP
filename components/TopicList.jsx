@@ -65,6 +65,7 @@ import Link from "next/link";
 import RemoveBtn from "./RemoveBtn";
 import { HiPencilAlt } from "react-icons/hi";
 import styles from "./styles/topicList.module.css";
+import { ThemeProvider, useTheme } from 'next-themes';
 import styles2 from "./styles/navBar.module.css";
 import EditTopicForm from "./EditTopicForm";
 
@@ -89,13 +90,17 @@ export default function TopicsList() {
   // State to manage topics and selected variety
   const [topics, setTopics] = useState([]);
   const [selectedVariety, setSelectedVariety] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+  const { resolvedTheme } = useTheme();
 
   // Fetch topics when the component mounts
   useEffect(() => {
     const fetchTopics = async () => {
       const data = await getTopics();
+      const email = localStorage.getItem("userEmail");
       console.log("data", data.topics)
       setTopics(data.topics);
+      setUserEmail(email);
     };
     fetchTopics();
   }, []);
@@ -106,17 +111,25 @@ export default function TopicsList() {
     : topics;
 
   return (
-    <div className={styles2.lightMode}>
+    <ThemeProvider>
       {/* Display the list of varieties */}
-      <div className={styles.varietyList}>
+      <div className={`${styles.varietyList} ${resolvedTheme === 'dark' ? styles.darkCard : styles.lightCard}`}
+      >
         <div className={styles.content}>
           <h2 className={styles.ContentHeading}>Varieties</h2>
           <ul>
             {/* Display all available varieties */}
-            <li onClick={() => setSelectedVariety("")} className={styles.filter}>All</li>
+            <li onClick={() => setSelectedVariety("")}
+              //  className={styles.filter}
+              className={`${styles.filter} ${resolvedTheme === 'dark' ? styles.darkCard : styles.lightCard}`}
+            >
+              All</li>
             {Array.from(new Set(topics.map((topic) => topic.variety))).map(
               (variety) => (
-                <li key={variety} onClick={() => setSelectedVariety(variety)} className={styles.filter}>
+                <li key={variety} onClick={() => setSelectedVariety(variety)}
+                  //  className={styles.filter}
+                  className={`${styles.filter} ${resolvedTheme === 'dark' ? styles.darkCard : styles.lightCard}`}
+                >
                   {variety}
                 </li>
               )
@@ -131,11 +144,17 @@ export default function TopicsList() {
         {filteredTopics.map((topic) => (
           <div
             key={topic._id}
-            className={styles.card}
+            // className={styles.card}
+            className={`${styles.card} ${resolvedTheme === 'dark' ? styles.darkCard : styles.lightCard}`}
           >
-            <Link href={`/editTopic/${topic._id}`}>
-              <HiPencilAlt size={24} />
-            </Link>
+            <div className={styles.actions}>
+              <Link href={`/editTopic/${topic._id}`}>
+                <HiPencilAlt size={24} />
+              </Link>
+              {userEmail === "ayushjha5467@gmail.com" && (
+                <RemoveBtn id={topic._id} />
+              )}
+            </div>
             <div>
               <h2 className="font-bold text-2xl">{topic.title}</h2>
               <div>{topic.description}</div>
@@ -149,12 +168,12 @@ export default function TopicsList() {
                   </Link>
                 )}
               </div>
-              
+
             </div>
-            {/* <RemoveBtn id={topic._id} /> */}
+
           </div>
         ))}
       </div>
-    </div>
+    </ThemeProvider>
   );
 }

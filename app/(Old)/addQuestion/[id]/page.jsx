@@ -78,6 +78,7 @@ import styles from '../addQuestion.module.css'
 
 export default function AddQuestion({ params }) {
   const [text, setText] = useState("");
+  const [level, setLevel] = useState(1);
   const [options, setOptions] = useState(["", "", "", ""]);
   const [correctOptionIndex, setCorrectOptionIndex] = useState(0);
   const { id } = params;
@@ -89,7 +90,7 @@ export default function AddQuestion({ params }) {
 
     // Check if all fields are filled
     // Check if all fields are filled
-    if (!text || !Array.isArray(options) || options.some(opt => !opt.trim())) {
+    if (!text || !level || !Array.isArray(options) || options.some(opt => !opt.trim())) {
       alert("Question and all options are required.");
       return;
     }
@@ -104,7 +105,7 @@ export default function AddQuestion({ params }) {
         headers: {
           "Content-type": "application/json",
         },
-        body: JSON.stringify({ text, options, correctOptionIndex }),
+        body: JSON.stringify({ text, options, correctOptionIndex, level }),
       });
 
       // console.log("Response:", res);
@@ -160,6 +161,13 @@ export default function AddQuestion({ params }) {
         />
       ))}
 
+      <input
+        onChange={(e) => setLevel(e.target.value)}
+        value={level}
+        className={styles.question}
+        type="text"
+        placeholder="Level"
+      />
       <select
         value={correctOptionIndex}
         onChange={(e) => setCorrectOptionIndex(Number(e.target.value))}
@@ -172,6 +180,8 @@ export default function AddQuestion({ params }) {
           </option>
         ))}
       </select>
+
+
 
       <button
         type="submit"
