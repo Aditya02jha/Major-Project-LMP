@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 // import { useState, useEffect } from "react";
 // import { useRouter } from "next/navigation";
@@ -94,12 +94,12 @@
 //     );
 // }
 
-
 // Navbar.js
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import styles from "./styles/navBar.module.css";
+<<<<<<< HEAD
 import ThemeSwitch from "./ThemeSwitch";
 
 export default function Navbar() {
@@ -113,98 +113,29 @@ export default function Navbar() {
     const [userInfo, setUserInfo] = useState({});
     const [isDarkMode, setIsDarkMode] = useState(false);
     const router = useRouter();
+=======
+import { Button } from "./ui/button";
+export default function Navbar() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userName, setUserName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+  const [userId, setUserId] = useState("");
+  const [points, setPoints] = useState(0);
+  const [userPoints, setUserPoints] = useState(0);
+  const [updateBadge, setUpdateBadge] = useState("");
+  const [userInfo, setUserInfo] = useState({});
+  const router = useRouter();
+>>>>>>> d3307a4a3277b93ad953d9d47766a681e629edbd
 
-    useEffect(() => {
-        const fetchUserPoints = async () => {
-            try {
-                const userId = localStorage.getItem("userId");
-                if (!userId) {
-                    console.error("User ID not found in localStorage");
-                    return;
-                }
-                const res = await fetch(`http://localhost:3000/api/points?userId=${userId}`);
-                const data = await res.json();
-                if (res.ok) {
-                    setPoints(data.points);
-                } else {
-                    console.error("Failed to fetch user points:", data.error);
-                }
-            } catch (error) {
-                console.error("Error fetching user points:", error);
-            }
-        };
-
-        const fetchUserPointsUI = async () => {
-            try {
-                const userId = localStorage.getItem("userId");
-                if (!userId) {
-                    console.error("User ID not found in localStorage");
-                    return;
-                }
-                const res = await fetch(`http://localhost:3000/api/points?userId=${userId}`);
-                if (!res.ok) {
-                    throw new Error("Failed to fetch user points");
-                }
-                const data = await res.json();
-                setUserPoints(data.points); // Update userPoints state
-                // console.log("point", data)
-
-                // Update the badge based on the new points
-                updateBadgeInUI(data.points);
-                updateBadge(data.points)
-            } catch (error) {
-                console.error(error);
-            }
-        };
-
-
-        const updateBadge = async (points) => {
-            try {
-                const userId = localStorage.getItem("userId");
-                if (!userId) {
-                    console.error("User ID not found in localStorage");
-                    return;
-                }
-                let badge = "";
-                if (points >= 10 && points < 50) {
-                    badge = "Beginner";
-                } else if (points >= 50 && points < 100) {
-                    badge = "Intermediate";
-                } else {
-                    badge = "Noob";
-                }
-
-                const res = await fetch(`http://localhost:3000/api/updateBadge?userId=${userId}&badge=${badge}`, {
-                    method: "PUT",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                });
-
-                // console.log("id", userId)
-
-                if (!res.ok) {
-                    throw new Error("Failed to update badge");
-                }
-
-                // console.log("res", res);
-                const data = await res.json();
-                setUpdateBadge(data.badge);
-                // console.log(data); // Log the response message
-            } catch (error) {
-                console.error("Error updating badge:", error);
-            }
-        };
-
-        const loggedIn = localStorage.getItem("isLoggedIn");
-        const name = localStorage.getItem("userName");
-        const email = localStorage.getItem("userEmail");
-        const Id = localStorage.getItem("userId");
-        const userDetail = localStorage.getItem("user");
-        if (!loggedIn) {
-            router.push("/login");
-            return;
+  useEffect(() => {
+    const fetchUserPoints = async () => {
+      try {
+        const userId = localStorage.getItem("userId");
+        if (!userId) {
+          console.error("User ID not found in localStorage");
+          return;
         }
+<<<<<<< HEAD
         if (loggedIn && name) {
             setIsLoggedIn(true);
             setUserName(name);
@@ -224,19 +155,48 @@ export default function Navbar() {
             setUserInfo({ ...userInfo, badge: "Beginner" });
         } else if (points >= 50 && points < 100) {
             setUserInfo({ ...userInfo, badge: "Intermediate" });
+=======
+        const res = await fetch(
+          `http://localhost:3000/api/points?userId=${userId}`
+        );
+        const data = await res.json();
+        if (res.ok) {
+          setPoints(data.points);
+>>>>>>> d3307a4a3277b93ad953d9d47766a681e629edbd
         } else {
-            setUserInfo({ ...userInfo, badge: "Noob" });
+          console.error("Failed to fetch user points:", data.error);
         }
+      } catch (error) {
+        console.error("Error fetching user points:", error);
+      }
     };
 
-    const handleLogout = () => {
-        localStorage.removeItem("isLoggedIn");
-        localStorage.removeItem("userName");
-        setIsLoggedIn(false);
-        setUserName("");
-        router.push("/login");
+    const fetchUserPointsUI = async () => {
+      try {
+        const userId = localStorage.getItem("userId");
+        if (!userId) {
+          console.error("User ID not found in localStorage");
+          return;
+        }
+        const res = await fetch(
+          `http://localhost:3000/api/points?userId=${userId}`
+        );
+        if (!res.ok) {
+          throw new Error("Failed to fetch user points");
+        }
+        const data = await res.json();
+        setUserPoints(data.points); // Update userPoints state
+        // console.log("point", data)
+
+        // Update the badge based on the new points
+        updateBadgeInUI(data.points);
+        updateBadge(data.points);
+      } catch (error) {
+        console.error(error);
+      }
     };
 
+<<<<<<< HEAD
 
     const toggleDarkMode = () => {
         setIsDarkMode(!isDarkMode);
@@ -271,13 +231,35 @@ export default function Navbar() {
                 ) : (
                     <span className={styles.disabledButton}>Add Courses</span>
                 )}
+=======
+    const updateBadge = async (points) => {
+      try {
+        const userId = localStorage.getItem("userId");
+        if (!userId) {
+          console.error("User ID not found in localStorage");
+          return;
+        }
+        let badge = "";
+        if (points >= 10 && points < 50) {
+          badge = "Beginner";
+        } else if (points >= 50 && points < 100) {
+          badge = "Intermediate";
+        } else {
+          badge = "Noob";
+        }
+>>>>>>> d3307a4a3277b93ad953d9d47766a681e629edbd
 
-                {userEmail === "ayushjha5467@gmail.com" ? (
-                    <Link href="/allUsers" className={styles.addQues}>All Users</Link>
-                ) : (
-                    <span className={`${styles.disabledButton} ${styles.hiddenButton}`}>All Users</span>
-                )}
+        const res = await fetch(
+          `http://localhost:3000/api/updateBadge?userId=${userId}&badge=${badge}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
+<<<<<<< HEAD
                 {isLoggedIn ? (
                     <button onClick={handleLogout} className={styles.navbarButton}>
                         Logout
@@ -290,4 +272,125 @@ export default function Navbar() {
             </div>
         </nav>
     );
+=======
+        // console.log("id", userId)
+
+        if (!res.ok) {
+          throw new Error("Failed to update badge");
+        }
+
+        // console.log("res", res);
+        const data = await res.json();
+        setUpdateBadge(data.badge);
+        // console.log(data); // Log the response message
+      } catch (error) {
+        console.error("Error updating badge:", error);
+      }
+    };
+
+    const loggedIn = localStorage.getItem("isLoggedIn");
+    const name = localStorage.getItem("userName");
+    const email = localStorage.getItem("userEmail");
+    const Id = localStorage.getItem("userId");
+    const userDetail = localStorage.getItem("user");
+    if (!loggedIn) {
+      router.push("/login");
+      return;
+    }
+    if (loggedIn && name) {
+      setIsLoggedIn(true);
+      setUserName(name);
+      setUserId(Id);
+      setUserEmail(email);
+      const parsedUserInfo = JSON.parse(userDetail);
+      setUserInfo(parsedUserInfo);
+      fetchUserPoints();
+      fetchUserPointsUI();
+      // updateBadge();
+    }
+  }, [points]);
+
+  const updateBadgeInUI = (points) => {
+    if (points >= 10 && points < 50) {
+      setUserInfo({ ...userInfo, badge: "Beginner" });
+    } else if (points >= 50 && points < 100) {
+      setUserInfo({ ...userInfo, badge: "Intermediate" });
+    } else {
+      setUserInfo({ ...userInfo, badge: "Noob" });
+    }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("userName");
+    setIsLoggedIn(false);
+    setUserName("");
+    router.push("/login");
+  };
+
+  return (
+    <nav className="bg-green-600 text-white px-4 py-2 flex justify-between items-center">
+      <div className="flex items-center space-x-4">
+        <Link href="/" className="text-xl font-bold">
+          APAM
+        </Link>
+        {isLoggedIn && (
+          <Link
+            href={`/user/${userId}`}
+            className="text-lg rounded-lg hover:bg-green-700 px-2 py-1"
+          >
+            {userName}
+          </Link>
+        )}
+        <div className="flex items-center space-x-2">
+          <p className="text-sm font-medium">Points: {points}</p>
+          <p className="text-sm font-medium">Badge: {userInfo.badge}</p>
+        </div>
+      </div>
+      <div className="flex items-center space-x-4">
+        {userEmail === "ayushjha5467@gmail.com" ? (
+          <Link
+            href="/addTopic"
+            className="bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-4 rounded-full"
+          >
+            Add Courses
+          </Link>
+        ) : (
+          <span className="bg-gray-500 text-white font-bold py-2 px-4 rounded-full">
+            Add Topics
+          </span>
+        )}
+
+        {userEmail === "ayushjha5467@gmail.com" ? (
+          <Link
+            href="/allUsers"
+            className="bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-4 rounded-full"
+          >
+            All Users
+          </Link>
+        ) : (
+          <span className="bg-gray-500 text-white font-bold py-2 px-4 rounded-full">
+            All Users
+          </span>
+        )}
+
+        {isLoggedIn ? (
+          <button
+            onClick={handleLogout}
+            className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full"
+          >
+            Logout
+          </button>
+        ) : (
+          <Link
+            href="/login"
+            className="bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-4 rounded-full"
+          >
+            Login
+          </Link>
+        )}
+      </div>
+    </nav>
+  );
+>>>>>>> d3307a4a3277b93ad953d9d47766a681e629edbd
 }

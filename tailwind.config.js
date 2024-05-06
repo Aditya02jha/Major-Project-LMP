@@ -7,7 +7,10 @@ module.exports = {
     './app/**/*.{js,jsx}',
     './src/**/*.{js,jsx}',
   ],
+<<<<<<< HEAD
   darkMode: 'class',
+=======
+>>>>>>> d3307a4a3277b93ad953d9d47766a681e629edbd
   prefix: "",
   theme: {
     container: {

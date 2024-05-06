@@ -21,8 +21,11 @@ export const Sidebar = ({ className }) => {
         </Link>
         <div className="flex flex-col gap-y-2 flex-1 uppercase">
         <SidebarItem label="Learn"  iconSrc="/learn.svg" href="/learn"/>
+<<<<<<< HEAD
         <SidebarItem label="Add Topic"  iconSrc="/plus.svg" href="/addTopic"/>
         <SidebarItem label="Courses"  iconSrc="/courses.svg" href="/courses"/>
+=======
+>>>>>>> d3307a4a3277b93ad953d9d47766a681e629edbd
         <SidebarItem label="leaderboard"  iconSrc="/leaderboard.svg" href="/leaderboard"/>
         <SidebarItem label="quests"  iconSrc="/quests.svg" href="/quests"/>
         <SidebarItem label="shop"  iconSrc="/shop.svg" href="/shop"/>
