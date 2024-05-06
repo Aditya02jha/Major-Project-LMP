@@ -239,6 +239,11 @@ export default function AddTopic() {
     };
 
     return (
+
+        <div>
+        <div>
+        <Image src="../hero.svg" />
+        </div>
         <form onSubmit={handleSubmit} 
         className={styles.center}
         // className="flex flex-col justify-center items-center gap-3"
@@ -285,5 +290,6 @@ export default function AddTopic() {
                 {isRegistering ? "Already have an account? Login" : "Create an account"}
             </button>
         </form>
+        </div>
     );
 }
