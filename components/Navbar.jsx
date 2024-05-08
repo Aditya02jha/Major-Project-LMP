@@ -80,13 +80,13 @@ export default function Navbar() {
 
   return (
     // <nav className={styles.navbar}>
-    <div className="sticky top-0 bg-white pb-3 lg:pt-[-30px] lg:mt-[-30px] flex items-center justify-between border-b-2 mb-5 text-neutral-400 lg:z-50">
+    <div className="sticky top-0 bg-white pb-3 lg:pt-[-28px] lg:mt-[-28px] flex items-center justify-between border-b-2 mb-5 text-neutral-400 lg:z-50 mt-5">
       {/* <div className={styles.navbarLeft}> */}
-      <div className=" flex items-center justify-between w-full lg:w-auto text-black font-extrabold mt-[-30px]">
+      <div className=" flex items-center justify-between w-full lg:w-auto text-black font-extrabold mt-[-28px]">
         {/* <Link href="/" className={styles.navbarBrand}>
                     LMP
                 </Link> */}
-        <div className="mx-4">
+        <div className="mx-4 flex-col">
           {isLoggedIn && (
             <Link href={`/user/${userId}`} className="mx-4 uppercase ">
               <Image
