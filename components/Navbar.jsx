@@ -80,50 +80,50 @@ export default function Navbar() {
 
   return (
     // <nav className={styles.navbar}>
-    <div className="sticky top-0 bg-white pb-3 lg:pt-[-28px] lg:mt-[-28px] flex items-center justify-between border-b-2 mb-5 text-neutral-400 lg:z-50 mt-5">
+    <div className="sticky top-8 bg-white pb-3 lg:pt-[-28px] lg:mt-[-28px] flex items-center justify-between border-b-2 mb-5 text-neutral-400 lg:z-50">
       {/* <div className={styles.navbarLeft}> */}
       <div className=" flex items-center justify-between w-full lg:w-auto text-black font-extrabold mt-[-28px]">
         {/* <Link href="/" className={styles.navbarBrand}>
                     LMP
                 </Link> */}
-        <div className="mx-4 flex-col">
+        <div className="mx-4 mt-[-15px]">
           {isLoggedIn && (
-            <Link href={`/user/${userId}`} className="mx-4 uppercase ">
+            <Link href={`/user/${userId}`} className="mx-4 uppercase flex items-center mt-4">
               <Image
                 src="/person.svg"
                 width={35}
                 height={35}
-                className=" border-black-500 border-2 rounded-full p-1 hover:-translate-y-1/4 "
+                className=" border-black-500 border-2 rounded-full p-1 hover:-translate-y-1/4 mx-2 "
               />
-              {userName}
+              <>{userName}</>
             </Link>
           )}
         </div>
-        </div>
-
-        <div className="flex justify-between mx-4 items-start mt-[-30px]">
-          <Button size="sm" variant="sidebar" >
-          <Image src="/points.svg" height={25} width={25} />
-            {points}
-          </Button>
-          <Button size="sm" variant="sidebar" >
-            {badge}
-          </Button>
       </div>
 
-      <div className={styles.navbarRight}>
+      <div className="flex justify-between mx-4 items-start mt-[-30px]">
+        <Button size="sm" variant="sidebar">
+          <Image src="/points.svg" height={25} width={25} />
+          {points}
+        </Button>
+        <Button size="sm" variant="sidebar">
+          {badge}
+        </Button>
+      </div>
+
+      <div className="flex justify-between mx-4 items-start mt-[-30px]">
         <ThemeSwitch />
-        {userEmail === "ayushjha5467@gmail.com" && (
+        {/* {userEmail === "ayushjha5467@gmail.com" && (
           <Link href="/addTopic" className={styles.addQues}>
             Add Courses
           </Link>
-        )}
+        )} */}
         {isLoggedIn ? (
           <Button
             onClick={handleLogout}
             size="sm"
             variant="danger"
-            className="w-full"
+            className="w-full mx-4"
           >
             Logout
           </Button>
