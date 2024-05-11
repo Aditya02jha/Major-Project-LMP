@@ -73,20 +73,31 @@ export default function TopicsList() {
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
+
+
         <div className={styles.main}>
           {filteredTopics.map((topic) => (
+            
             <div key={topic._id} className={styles.card}>
-              <div className={styles.actions}>
-                <Link href={`/editTopic/${topic._id}`}>
-                    <Image src={`/${topic.title}.svg`} alt={topic.title} height={30} width={30} />
+            <div className={styles.actions}>
+            <Link href={`/editTopic/${topic._id}`}>
+            <div className={styles.actions}>
+            <Image src={`/${topic.title}.svg`} alt={topic.title} height={30} width={30} />
+            </div>    
                 </Link>
+              <div className={styles.actions}>
+                    
                 {userEmail === "ayushjha5467@gmail.com" && (
                   <RemoveBtn id={topic._id} />
                 )}
               </div>
+              </div>
+              
               <div>
+              <Link href={`/editTopic/${topic._id}`}>
                 <h2 className="font-bold text-2xl">{topic.title}</h2>
                 <p>{topic.description}</p>
+              </Link>
                 <div className={styles.info}>
                   <p className={styles.variety}>{topic.variety}</p>
                   {topic.read && (
@@ -97,6 +108,7 @@ export default function TopicsList() {
                 </div>
               </div>
             </div>
+            
           ))}
         </div>
       </div>

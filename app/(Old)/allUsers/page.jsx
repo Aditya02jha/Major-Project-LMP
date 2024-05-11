@@ -33,9 +33,14 @@ export default function AllUser() {
 
   return (
     <ThemeProvider>
-      <div className={styles.center}>
+      {/* <div className={styles.center}>
         <h1 className={styles.heading}>All Users</h1>
-        <div className={styles.main}>
+        <div className={styles.main}>  */}
+        <div className="max-w-[912px] px-3 mx-auto mt-4">
+        <div className="flex justify-between items-center m-7">
+          <h1 className="text-2xl font-bold text-neutral-700">
+            Coding Courses
+          </h1>
           {filteredUsers.map((user, index) => (
             <div className={`${styles.card} ${resolvedTheme === 'dark' ? styles.darkCard : styles.lightCard}`} key={index}>
               <p><span className={styles.name}>Name:</span>  {user.name}</p>

@@ -16,9 +16,11 @@
 }
 
 .box {
+    display: flex;
     height: 400px; 
     overflow-y: auto;  
     padding: 10px;
+    margin-top:30px ;
     /* border: 1px solid #ccc; */
 }
 
