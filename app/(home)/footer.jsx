@@ -6,7 +6,7 @@ export const Footer = () => {
       <div className="max-w-screen-lg mx-auto flex items-center justify-evenly h-full ">
         <Button size="lg" variant="ghost">
           <Image
-            src="/Cpp.svg"
+            src="/C++.svg"
             alt="cpplogo"
             height={32}
             width={40}

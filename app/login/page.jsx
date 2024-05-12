@@ -28,7 +28,7 @@
 //       });
 
 //       if (res.ok) {
-//         router.push("/");
+//         router.push("/course");
 //       } else {
 //         throw new Error("Failed to create a topic");
 //       }
@@ -108,7 +108,7 @@
 //       console.log("res", res);
 
 //       if (res.ok) {
-//         router.push("/");
+//         router.push("/course");
 //         return;
 //       } else {
 //         throw new Error("Failed to create a user");
@@ -218,7 +218,7 @@ export default function AddTopic() {
         localStorage.setItem("userId", user._id); // Set the logged-in user's name
         localStorage.setItem("user", JSON.stringify(user)); // Store user data in local storage
 
-        router.push("/");
+        router.push("/course");
         return;
       } else {
         throw new Error("Failed to create a user or login");

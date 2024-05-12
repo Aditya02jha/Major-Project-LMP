@@ -35,7 +35,7 @@
 //         <div className="pt-8 pl-4 pb-7 flex items-center gap-x-3">
 //           <Image src="/mascot.svg" height={40} width={40} alt="mascot" />
 //           <h1 className="text-2xl font-extrabold text-green-600 tracking-wide">
-//             LINGO
+//             LMP
 //           </h1>
 //         </div>
 //         {/* <ClerkLoading>
@@ -43,7 +43,7 @@
 //         </ClerkLoading>
 //         <ClerkLoaded>
 //           <SignedIn>
-//             <UserButton afterSignOutUrl="/" />
+//             <UserButton afterSignOutUrl="/course" />
 //             <SignOutButton
 //               mode="modal"
 //               afterSignInUrl="/learn"
@@ -102,11 +102,11 @@ export function Header() {
       <div className="lg:max-w-screen-lg mx-auto flex items-center justify-between h-full bg-slate-200">
         <div className="pt-8 pl-4 pb-7 flex items-center gap-x-3">
           <Image src="/mascot.svg" height={40} width={40} alt="mascot" />
-          <h1 className="text-2xl font-extrabold text-green-600 tracking-wide">LINGO</h1>
+          <h1 className="text-2xl font-extrabold text-green-600 tracking-wide">LMP</h1>
         </div>
         <div className="pt-8 pl-4 pb-7 flex items-center gap-x-3">
         {isLoggedIn ? (
-          <Link href="/profile">
+          <Link href={`/user/${userInfo._id}`}>
             <Image src="./person.svg" height={40} width={40} alt="User Profile" />
           </Link>
         ) : (

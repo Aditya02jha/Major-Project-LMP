@@ -83,7 +83,7 @@ export default function Navbar() {
     <div className="sticky top-8 bg-white pb-3 lg:pt-[-28px] lg:mt-[-28px] flex items-center justify-between border-b-2 mb-5 text-neutral-400 lg:z-50">
       {/* <div className={styles.navbarLeft}> */}
       <div className=" flex items-center justify-between w-full lg:w-auto text-black font-extrabold mt-[-28px]">
-        {/* <Link href="/" className={styles.navbarBrand}>
+        {/* <Link href="/course" className={styles.navbarBrand}>
                     LMP
                 </Link> */}
         <div className="mx-4 mt-[-15px]">

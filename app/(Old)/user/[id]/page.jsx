@@ -183,6 +183,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ThemeProvider, useTheme } from 'next-themes';
 import styles from '../user.module.css'
+import Image from "next/image";
 
 export default function AddUserDetal({ params }) {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -312,11 +313,27 @@ export default function AddUserDetal({ params }) {
                 <div className={`${styles.card} ${resolvedTheme === 'dark' ? styles.darkCard : styles.lightCard}`}
 >
                     <h2 className={styles.heading}>User Information</h2>
-                    <p><strong>User ID:</strong> {userInfo._id}</p>
-                    <p><strong>Name:</strong> {userInfo.name}</p>
-                    <p><strong>Email:</strong> {userInfo.email}</p>
-                    <p><strong>Badge:</strong> {userInfo.badge}</p>
-                    <p><strong>Points:</strong> {userPoints}</p>
+                    <div
+                className={`${styles.card} ${
+                  resolvedTheme === "dark" ? styles.darkCard : styles.lightCard
+                }`}
+              >
+              <div className="flex-col justify-normal items-center ">
+              <Image src="/smartUser.jpg" alt="user" height={50} width={50} className="rounded-full " />
+                <p className="captalised ">
+                  <span className={styles.name}>Name:</span> {userInfo.name}
+                </p>
+                <p className="captalised ">
+                  {" "}
+                  <span className={styles.name}>Email:</span> {userInfo.email}
+                </p>
+                <p className="captalised ">
+                  {" "}
+                  <span className={styles.name}>Badge: </span>
+                  {userInfo.badge}
+                </p>
+              </div>
+              </div>
                 </div>
             </div>
         </ThemeProvider>

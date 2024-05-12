@@ -32,7 +32,7 @@ export default function AddTopic() {
       });
 
       if (res.ok) {
-        router.push("/");
+        router.push("/course");
         return;
       } else {
         throw new Error("Failed to create a topic");

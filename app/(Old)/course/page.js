@@ -1,7 +1,7 @@
 import TopicList from "@/components/TopicList";
 
 
-export default function Home() {
+export default function course() {
   
   return (
     <>

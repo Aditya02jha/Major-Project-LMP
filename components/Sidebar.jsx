@@ -32,16 +32,16 @@ export const Sidebar = ({ className }) => {
           className
         )}
       >
-        <Link href="/">
+        <Link href="/course">
           <div className="pt-8 pl-4 pb-7 flex items-center gap-x-3">
             <Image src="/mascot.svg" height={40} width={40} alt="mascot" />
             <h1 className="text-2xl font-extrabold text-green-600 tracking-wide">
-              LINGO
+              LMP
             </h1>
           </div>
         </Link>
         <div className="flex flex-col gap-y-2 flex-1 uppercase">
-          <SidebarItem label="Courses" iconSrc="/courses.svg" href="/" />
+          <SidebarItem label="Courses" iconSrc="/courses.svg" href="/course" />
           {/* <SidebarItem label="Add Question"  iconSrc="/plus.svg" href="/addQuestion"/> */}
           {userInfo && userInfo.email === "ayushjha5467@gmail.com" && (
             <SidebarItem
@@ -70,7 +70,7 @@ export const Sidebar = ({ className }) => {
             <Loader className="h-5 w-5 text-muted-foreground animate-spin" />
         </ClerkLoading>
         <ClerkLoaded>
-            <UserButton afterSignOutUrl="/"/>
+            <UserButton afterSignOutUrl="/course"/>
         </ClerkLoaded>
         </div> */}
       </div>

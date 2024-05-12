@@ -35,7 +35,7 @@ export default function AddAnswer({ params }) {
 
             if (res.ok) {
                 router.push(`/editTopic/${id}`);
-                // router.push("/");
+                // router.push("/course");
                 return;
             } else {
                 throw new Error("Failed to add text");
